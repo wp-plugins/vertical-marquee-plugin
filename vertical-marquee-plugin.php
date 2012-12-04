@@ -4,7 +4,7 @@
 Plugin Name: Vertical marquee plugin
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Description: Vertical marquee plugin.   
-Version: 4.0
+Version: 4.1
 Author: Gopi.R
 Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
@@ -15,6 +15,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 global $wpdb, $wp_version;
 define("WP_VM_TABLE", $wpdb->prefix . "verticalmarquee");
+
+function vmarquee( $setting="1", $group="group1" ) 
+{
+	$arr = array();
+	$arr["setting"]=$setting;
+	$arr["group"]=$group;
+	echo vm_shortcode($arr);
+}
 
 function verticalmarquee()
 {
@@ -63,7 +71,7 @@ function verticalmarquee()
 	echo $what_marquee;
 }
 
-add_shortcode( 'vertical-marguee', 'vm_shortcode' );
+
 
 function vm_shortcode( $atts ) 
 {
@@ -345,7 +353,7 @@ function vm_admin_options()
       <li>Add directly in the theme</li>
       <li>Short code for pages and posts</li>
     </ol>
-    Note: Check official website for more info <a href="http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/" target="_blank">click here</a> </div>
+    Note: Check official website for more information <a href="http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/" target="_blank">click here</a> </div>
 </div>
 <?php
 }
@@ -408,6 +416,7 @@ function vm_widget($args)
 	}
 }
 
+add_shortcode( 'vertical-marguee', 'vm_shortcode' );
 add_action("plugins_loaded", "vm_widget_init");
 register_activation_hook(__FILE__, 'vm_activation');
 add_action('admin_menu', 'vm_add_to_menu');

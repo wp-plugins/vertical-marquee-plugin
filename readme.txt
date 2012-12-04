@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-p
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Tags: vertical, marquee, plugin
 Requires at least: 4.0
-Tested up to: 3.4.2
-Stable tag: 4.0
+Tested up to: 3.5
+Stable tag: 4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -72,6 +72,11 @@ New option to add expiration date for the message
 
 Tested upto 3.4.2
 
+= 4.1 =	
+
+Tested upto 3.5
+New PHP code to add plugin directly in the theme file.
+
 == Upgrade Notice ==
 
 = 1.0 =				
@@ -89,3 +94,8 @@ New option to add expiration date for the message
 = 4.0 =	
 
 Tested upto 3.4.2
+
+= 4.1 =	
+
+Tested upto 3.5
+New PHP code to add plugin directly in the theme file.
