@@ -4,9 +4,9 @@ Donate link: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-
 Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Tags: vertical, marquee, plugin
-Requires at least: 4.0
-Tested up to: 3.5
-Stable tag: 4.1
+Requires at least: 3.2
+Tested up to: 3.6
+Stable tag: 5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -77,6 +77,12 @@ Tested upto 3.4.2
 Tested upto 3.5
 New PHP code to add plugin directly in the theme file.
 
+= 5.0 =
+
+Tested up to 3.6
+New admin interface.
+Added few security features.
+
 == Upgrade Notice ==
 
 = 1.0 =				
@@ -99,3 +105,9 @@ Tested upto 3.4.2
 
 Tested upto 3.5
 New PHP code to add plugin directly in the theme file.
+
+= 5.0 =
+
+Tested up to 3.6
+New admin interface.
+Added few security features.
