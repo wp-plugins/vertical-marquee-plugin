@@ -20,7 +20,7 @@ if (isset($_POST['frm_vm_display']) && $_POST['frm_vm_display'] == 'yes')
 	{
 		?>
 <div class="error fade">
-  <p><strong>Oops, selected details doesn't exist (1).</strong></p>
+  <p><strong><?php _e('Oops, selected details doesnt exist','vertical-marquee'); ?></strong></p>
 </div>
 <?php
 	}
@@ -40,7 +40,7 @@ if (isset($_POST['frm_vm_display']) && $_POST['frm_vm_display'] == 'yes')
 			
 			//	Set success message
 			$vm_success_msg = TRUE;
-			$vm_success = __('Selected record was successfully deleted.', WP_vm_UNIQUE_NAME);
+			$vm_success = __('Selected record was successfully deleted.', 'vertical-marquee');
 		}
 	}
 	
@@ -56,30 +56,31 @@ if (isset($_POST['frm_vm_display']) && $_POST['frm_vm_display'] == 'yes')
 ?>
 <div class="wrap">
   <div id="icon-edit" class="icon32 icon32-posts-post"></div>
-  <h2><?php echo WP_vm_TITLE; ?><a class="add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=vertical-marquee-plugin&amp;ac=add">Add New</a></h2>
+  <h2><?php _e('Vertical marquee plugin','vertical-marquee'); ?>
+  <a class="add-new-h2" href="<?php echo WP_vm_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New','vertical-marquee'); ?></a></h2>
   <div class="tool-box">
     <?php
 		$sSql = "SELECT * FROM `".WP_VM_TABLE."` order by vm_id desc";
 		$myData = array();
 		$myData = $wpdb->get_results($sSql, ARRAY_A);
 		?>
-    <script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/vertical-marquee-plugin/pages/setting.js"></script>
+    <script language="JavaScript" src="<?php echo WP_vm_PLUGIN_URL; ?>/pages/setting.js"></script>
     <form name="frm_vm_display" method="post">
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
             <th width="10px" class="check-column" scope="col"><input type="checkbox" name="vm_group_item[]" /></th>
-            <th scope="col">Marquee message</th>
-            <th width="70px" scope="col">Group</th>
-            <th width="140px" scope="col">Expiration</th>
+            <th scope="col"><?php _e('Marquee message','vertical-marquee'); ?></th>
+            <th scope="col"><?php _e('Group','vertical-marquee'); ?></th>
+            <th scope="col"><?php _e('Expiration','vertical-marquee'); ?></th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th width="10px" class="check-column" scope="col"><input type="checkbox" name="vm_group_item[]" /></th>
-            <th scope="col">Marquee message</th>
-            <th width="70px" scope="col">Group</th>
-            <th width="140px" scope="col">Expiration</th>
+            <th scope="col"><?php _e('Marquee message','vertical-marquee'); ?></th>
+            <th scope="col"><?php _e('Group','vertical-marquee'); ?></th>
+            <th scope="col"><?php _e('Expiration','vertical-marquee'); ?></th>
           </tr>
         </tfoot>
         <tbody>
@@ -100,8 +101,8 @@ if (isset($_POST['frm_vm_display']) && $_POST['frm_vm_display'] == 'yes')
 						<td>
 						<?php echo stripslashes($data['vm_text']); ?>
 						<div class="row-actions">
-						<span class="edit"><a title="Edit" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=vertical-marquee-plugin&amp;ac=edit&amp;did=<?php echo $data['vm_id']; ?>">Edit</a> | </span>
-						<span class="trash"><a onClick="javascript:_vm_delete('<?php echo $data['vm_id']; ?>')" href="javascript:void(0);">Delete</a></span> </div></td>
+						<span class="edit"><a title="Edit" href="<?php echo WP_vm_ADMIN_URL; ?>&amp;ac=edit&amp;did=<?php echo $data['vm_id']; ?>"><?php _e('Edit','vertical-marquee'); ?></a> | </span>
+						<span class="trash"><a onClick="javascript:_vm_delete('<?php echo $data['vm_id']; ?>')" href="javascript:void(0);"><?php _e('Delete','vertical-marquee'); ?></a></span> </div></td>
 						<td><?php echo $data['vm_group']; ?></td>
 						<td><?php echo $vm_date; ?></td>
 					  </tr>
@@ -111,7 +112,7 @@ if (isset($_POST['frm_vm_display']) && $_POST['frm_vm_display'] == 'yes')
 			}
 			else
 			{
-				?><tr><td colspan="4" align="center">No records available.</td></tr><?php 
+				?><tr><td colspan="4" align="center"><?php _e('No records available.','vertical-marquee'); ?></td></tr><?php 
 			}
 			?>
         </tbody>
@@ -120,9 +121,16 @@ if (isset($_POST['frm_vm_display']) && $_POST['frm_vm_display'] == 'yes')
       <input type="hidden" name="frm_vm_display" value="yes"/>
     </form>
     <div class="tablenav">
-      <h2> <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=vertical-marquee-plugin&amp;ac=add">Add New</a> <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=vertical-marquee-plugin&amp;ac=set">Setting Management</a> <a class="button add-new-h2" target="_blank" href="<?php echo WP_vm_FAV; ?>">Help</a> </h2>
+      <h2> 
+		  <a class="button add-new-h2" href="<?php echo WP_vm_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New','vertical-marquee'); ?></a> 
+		  <a class="button add-new-h2" href="<?php echo WP_vm_ADMIN_URL; ?>&amp;ac=set"><?php _e('Setting Management','vertical-marquee'); ?></a> 
+		  <a class="button add-new-h2" target="_blank" href="<?php echo WP_vm_FAV; ?>"><?php _e('Help','vertical-marquee'); ?></a> 
+	  </h2>
     </div>
     <br />
-    <p class="description"><?php echo WP_vm_LINK; ?></p>
+	<p class="description">
+		<?php _e('Check official website for more information', 'vertical-marquee'); ?>
+		<a target="_blank" href="<?php echo WP_vm_FAV; ?>"><?php _e('click here', 'vertical-marquee'); ?></a>
+	</p>
   </div>
 </div>

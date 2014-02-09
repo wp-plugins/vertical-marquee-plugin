@@ -32,5 +32,4 @@ function _vm_redirect()
 function _vm_help()
 {
 	window.open("http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/");
-}
-				  
+}		  

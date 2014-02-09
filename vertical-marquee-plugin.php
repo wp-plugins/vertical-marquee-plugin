@@ -1,10 +1,9 @@
 <?php
-
 /*
 Plugin Name: Vertical marquee plugin
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
-Description: Vertical marquee plugin.   
-Version: 5.0
+Description:  You can use this vertical marquee plugin to make your text scroll upward or downwards. This plugin will work all leading browsers. 
+Version: 5.1
 Author: Gopi.R
 Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
@@ -15,11 +14,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 global $wpdb, $wp_version;
 define("WP_VM_TABLE", $wpdb->prefix . "verticalmarquee");
-
-define("WP_vm_UNIQUE_NAME", "vertical-marquee-plugin");
-define("WP_vm_TITLE", "Vertical marquee plugin");
-define('WP_vm_LINK', 'Check official website for more information <a target="_blank" href="http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/">click here</a>');
 define('WP_vm_FAV', 'http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/');
+
+if ( ! defined( 'WP_vm_BASENAME' ) )
+	define( 'WP_vm_BASENAME', plugin_basename( __FILE__ ) );
+	
+if ( ! defined( 'WP_vm_PLUGIN_NAME' ) )
+	define( 'WP_vm_PLUGIN_NAME', trim( dirname( WP_vm_BASENAME ), '/' ) );
+	
+if ( ! defined( 'WP_vm_PLUGIN_URL' ) )
+	define( 'WP_vm_PLUGIN_URL', WP_PLUGIN_URL . '/' . WP_vm_PLUGIN_NAME );
+	
+if ( ! defined( 'WP_vm_ADMIN_URL' ) )
+	define( 'WP_vm_ADMIN_URL', get_option('siteurl') . '/wp-admin/options-general.php?page=vertical-marquee-plugin' );
 
 function vmarquee( $setting="1", $group="group1" ) 
 {
@@ -61,7 +68,7 @@ function verticalmarquee()
 	}
 	else
 	{
-		$vsm = "No data found, please check the expiration date.";
+		$vsm = __('No data found, please check the expiration date.', 'vertical-marquee');
 	}
 	$vm_title = get_option('vm_title');
 	$vm_setting1 = get_option('vm_setting1');
@@ -134,7 +141,7 @@ function vm_shortcode( $atts )
 	}
 	else
 	{
-		$what_marquee = "Please check your short code, no records available.";	
+		$what_marquee = __('Please check your short code, no records available.', 'vertical-marquee');	
 	}
 	return $what_marquee;
 }
@@ -159,7 +166,7 @@ function vm_activation()
 			  `vm_link` VARCHAR( 1024 ) NOT NULL default '#',
 			  `vm_group` VARCHAR( 10 ) NOT NULL default 'GROUP1',
 			  `vm_date` datetime NOT NULL default '0000-00-00 00:00:00',
-			  PRIMARY KEY  (`vm_id`) )
+			  PRIMARY KEY  (`vm_id`) ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 			");
 		$sSql = "INSERT INTO `". WP_VM_TABLE . "` (vm_text, vm_link, vm_group, vm_date) VALUES ('This is sample text for Vertical marquee plugin.', '#', 'WIDGET', '9999-01-01');"; 
 		$wpdb->query($sSql);
@@ -200,33 +207,37 @@ function vm_admin_options()
 
 function vm_add_to_menu() 
 {
-	add_options_page('Vertical marquee plugin', 'Vertical marquee', 'manage_options', 'vertical-marquee-plugin', 'vm_admin_options' );
+	add_options_page( __('Vertical marquee','vertical-marquee'), __('Vertical marquee','vertical-marquee'), 'manage_options', 'vertical-marquee-plugin', 'vm_admin_options' );
 }
 
 function vm_widget_init() 
 {
 	if(function_exists('wp_register_sidebar_widget')) 	
 	{
-		wp_register_sidebar_widget('Vertical marquee', 'Vertical marquee', 'vm_widget');
+		wp_register_sidebar_widget( __('Vertical marquee','vertical-marquee'), __('Vertical marquee','vertical-marquee'), 'vm_widget');
 	}
 	
 	if(function_exists('wp_register_widget_control')) 	
 	{
-		wp_register_widget_control('Vertical marquee', array('Vertical marquee', 'widgets'), 'vm_control');
+		wp_register_widget_control( __('Vertical marquee','vertical-marquee'), array( __('Vertical marquee','vertical-marquee'), 'widgets'), 'vm_control');
 	} 
 }
 
 function vm_control() 
 {
 	$vm_title = get_option('vm_title');
-	if (@$_POST['vm_control_submit']) 
+	if (isset($_POST['vm_control_submit'])) 
 	{
 		$vm_title = $_POST['vm_title'];
 		update_option('vm_title', $vm_title);
 	}
-	echo '<p>Title:<br><input  style="width: 200px;" type="text" value="';
+	echo '<p>'.__('Title:','vertical-marquee').'<br><input  style="width: 200px;" type="text" value="';
 	echo $vm_title . '" name="vm_title" id="vm_title" /></p>';
 	echo '<input type="hidden" id="vm_control_submit" name="vm_control_submit" value="1" />';
+	
+	echo '<p>';
+	_e('Check official website for more info', 'vertical-marquee');
+	?> <a target="_blank" href="<?php echo WP_vm_FAV; ?>"><?php _e('click here', 'vertical-marquee'); ?></a></p><?php
 }
 
 function vm_widget($args) 
@@ -254,6 +265,12 @@ function vm_widget($args)
 	}
 }
 
+function vm_textdomain() 
+{
+	  load_plugin_textdomain( 'vertical-marquee', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+add_action('plugins_loaded', 'vm_textdomain');
 add_shortcode( 'vertical-marguee', 'vm_shortcode' );
 add_action("plugins_loaded", "vm_widget_init");
 register_activation_hook(__FILE__, 'vm_activation');
