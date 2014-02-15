@@ -5,12 +5,12 @@ Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-p
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Tags: vertical, marquee, plugin
 Requires at least: 3.4
-Tested up to: 3.8
+Tested up to: 3.8.1
 Stable tag: 5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
-Use this vertical marquee plugin to make your text scroll upward or downwards.
+You can use this vertical marquee plugin to make your text scroll upward or downwards.
 
 == Description ==
 
@@ -24,12 +24,7 @@ I have created this simple plugin because of the user request, You can use this 
 
 Short code available,	
 
-http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
-
-See the live demo!	
-
-[Demo](http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/)		
-[To see my more plugin](http://www.gopiplus.com/work/plugin-list/)		
+http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/	
 
 == Installation ==
 
