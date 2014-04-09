@@ -3,8 +3,8 @@
 Plugin Name: Vertical marquee plugin
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Description:  You can use this vertical marquee plugin to make your text scroll upward or downwards. This plugin will work all leading browsers. 
-Version: 5.1
-Author: Gopi.R
+Version: 5.2
+Author: Gopi Ramasamy
 Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Tags: vertical, marquee
@@ -39,6 +39,7 @@ function vmarquee( $setting="1", $group="group1" )
 function verticalmarquee()
 {
 	global $wpdb;
+	$link = "";
 	$sSql = "select vm_text,vm_link from ".WP_VM_TABLE." where vm_group='WIDGET' ";
 	$sSql = $sSql . " and (`vm_date` >= NOW())";
 	$sSql = $sSql . " order by vm_id desc";
@@ -49,7 +50,7 @@ function verticalmarquee()
 		$vsm = "";
 		foreach ( $data as $data ) 
 		{
-			@$link = $data->vm_link;	
+			$link = $data->vm_link;	
 			if($cnt==0) 
 			{  
 				if($link != "" && $link != "#") { $vsm = $vsm . "<a href='".$link."'>"; } 
@@ -105,6 +106,7 @@ function vm_shortcode( $atts )
 	
 	// Database query
 	$what_marquee = "";	
+	$link = "";
 	$sSql = "select vm_text,vm_link from ".WP_VM_TABLE." where vm_group='$group'";
 	$sSql = $sSql . " and (`vm_date` >= NOW())";
 	$sSql = $sSql . " ORDER BY vm_id desc";
@@ -115,7 +117,7 @@ function vm_shortcode( $atts )
 		$vsm = "";
 		foreach ( $data as $data ) 
 		{
-			@$link = $data->vm_link;
+			$link = $data->vm_link;
 			if($cnt==0) 
 			{  
 				if($link != "" && $link != "#") { $vsm = $vsm . "<a href='".$link."'>"; } 

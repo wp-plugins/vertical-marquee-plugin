@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-p
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Tags: vertical, marquee, plugin
 Requires at least: 3.4
-Tested up to: 3.8.1
-Stable tag: 5.1
+Tested up to: 3.9
+Stable tag: 5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -84,6 +84,11 @@ Added few security features.
 2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
 Plugin *.po file (vertical-marquee.po) available in the languages folder.
 
+= 5.2 =
+
+1. Tested up to 3.9
+2. Small security update.
+
 == Upgrade Notice ==
 
 = 1.0 =				
@@ -118,3 +123,8 @@ Added few security features.
 1. Tested up to 3.8
 2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
 Plugin *.po file (vertical-marquee.po) available in the languages folder.
+
+= 5.2 =
+
+1. Tested up to 3.9
+2. Small security update.
