@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Vertical marquee plugin\n"
-"POT-Creation-Date: 2014-04-09 16:19+0800\n"
-"PO-Revision-Date: 2014-04-09 16:20+0800\n"
+"POT-Creation-Date: 2014-06-19 22:30+0800\n"
+"PO-Revision-Date: 2014-06-19 22:30+0800\n"
 "Last-Translator: \n"
 "Language-Team: www.gopiplus.com <www.gopiplus.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,28 +13,51 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../vertical-marquee-plugin.php:72
+#: ../vertical-marquee-plugin.php:130
 msgid "No data found, please check the expiration date."
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:146
+#: ../vertical-marquee-plugin.php:201
 msgid "Please check your short code, no records available."
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:212 ../vertical-marquee-plugin.php:219
-#: ../vertical-marquee-plugin.php:224
+#: ../vertical-marquee-plugin.php:267 ../vertical-marquee-plugin.php:274
+#: ../vertical-marquee-plugin.php:275
 msgid "Vertical marquee"
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:236
-msgid "Title:"
+#: ../vertical-marquee-plugin.php:337
+msgid "Widget Title"
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:241
-msgid "Check official website for more info"
+#: ../vertical-marquee-plugin.php:342 ../pages/content-setting.php:50
+#: ../pages/content-setting.php:70 ../pages/content-setting.php:90
+msgid "Scroll amount"
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:242 ../pages/content-management-add.php:135
+#: ../vertical-marquee-plugin.php:348 ../pages/content-setting.php:54
+#: ../pages/content-setting.php:74 ../pages/content-setting.php:94
+msgid "Scroll delay"
+msgstr ""
+
+#: ../vertical-marquee-plugin.php:354
+msgid "Scroll Direction"
+msgstr ""
+
+#: ../vertical-marquee-plugin.php:362 ../pages/content-setting.php:65
+#: ../pages/content-setting.php:85 ../pages/content-setting.php:105
+msgid "Style"
+msgstr ""
+
+#: ../vertical-marquee-plugin.php:368
+msgid "Message group"
+msgstr ""
+
+#: ../vertical-marquee-plugin.php:385
+msgid "For more information"
+msgstr ""
+
+#: ../vertical-marquee-plugin.php:385 ../pages/content-management-add.php:135
 #: ../pages/content-management-edit.php:176
 #: ../pages/content-management-show.php:134 ../pages/content-setting.php:120
 msgid "click here"
@@ -196,23 +219,13 @@ msgid "Details successfully updated."
 msgstr ""
 
 #: ../pages/content-setting.php:49
-msgid "Setting 1 (Default for Widget)"
-msgstr ""
-
-#: ../pages/content-setting.php:50 ../pages/content-setting.php:70
-#: ../pages/content-setting.php:90
-msgid "Scroll amount"
+msgid "Setting 1"
 msgstr ""
 
 #: ../pages/content-setting.php:52 ../pages/content-setting.php:72
 #: ../pages/content-setting.php:92
 msgid ""
 "Scroll Amount, together with Scroll Delay, sets the speed of the scrolling."
-msgstr ""
-
-#: ../pages/content-setting.php:54 ../pages/content-setting.php:74
-#: ../pages/content-setting.php:94
-msgid "Scroll delay"
 msgstr ""
 
 #: ../pages/content-setting.php:56 ../pages/content-setting.php:76
@@ -229,11 +242,6 @@ msgstr ""
 #: ../pages/content-setting.php:63 ../pages/content-setting.php:83
 #: ../pages/content-setting.php:103
 msgid "Select your scroll direction."
-msgstr ""
-
-#: ../pages/content-setting.php:65 ../pages/content-setting.php:85
-#: ../pages/content-setting.php:105
-msgid "Style"
 msgstr ""
 
 #: ../pages/content-setting.php:67 ../pages/content-setting.php:87

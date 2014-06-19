@@ -3,7 +3,7 @@
 Plugin Name: Vertical marquee plugin
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Description:  You can use this vertical marquee plugin to make your text scroll upward or downwards. This plugin will work all leading browsers. 
-Version: 5.2
+Version: 5.3
 Author: Gopi Ramasamy
 Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
@@ -36,11 +36,69 @@ function vmarquee( $setting="1", $group="group1" )
 	echo vm_shortcode($arr);
 }
 
-function verticalmarquee()
+function verticalmarquee( $atts )
 {
 	global $wpdb;
 	$link = "";
-	$sSql = "select vm_text,vm_link from ".WP_VM_TABLE." where vm_group='WIDGET' ";
+	
+	$vm_scrollamount = 2;
+	$vm_scrolldelay = 5;
+	$vm_direction = "up";
+	$vm_style = "height:150px;";
+	$vm_group = "";
+	
+	if ( is_array( $atts ) )
+	{
+		foreach(array_keys($atts) as $key)
+		{
+			if($key == "vm_scrollamount")
+			{
+				$vm_scrollamount = $atts["vm_scrollamount"];
+			}
+			elseif($key == "vm_scrolldelay")
+			{
+				$vm_scrolldelay = $atts["vm_scrolldelay"];
+			}
+			elseif($key == "vm_direction")
+			{
+				$vm_direction = $atts["vm_direction"];
+			}
+			elseif($key == "vm_style")
+			{
+				$vm_style = $atts["vm_style"];
+			}
+			elseif($key == "vm_group")
+			{
+				$vm_group = $atts["vm_group"];
+			}
+		}
+	}
+	
+	if($vm_scrollamount == "" || !is_numeric($vm_scrollamount))
+	{
+		$vm_scrollamount = 2;
+	}
+	
+	if($vm_scrolldelay == "" || !is_numeric($vm_scrolldelay))
+	{
+		$vm_scrolldelay = 5;
+	}
+	
+	if($vm_direction <> "up" && $vm_direction <> "down")
+	{
+		$vm_direction = "up";
+	}
+	
+	if($vm_style == "")
+	{
+		$vm_style = "height:150px;";
+	}
+	
+	$sSql = "select vm_text,vm_link from ".WP_VM_TABLE." where 1=1 ";
+	if($vm_group <> "")
+	{
+		$sSql = $sSql . " and vm_group = '$vm_group'";
+	}
 	$sSql = $sSql . " and (`vm_date` >= NOW())";
 	$sSql = $sSql . " order by vm_id desc";
 	$data = $wpdb->get_results($sSql);
@@ -53,14 +111,14 @@ function verticalmarquee()
 			$link = $data->vm_link;	
 			if($cnt==0) 
 			{  
-				if($link != "" && $link != "#") { $vsm = $vsm . "<a href='".$link."'>"; } 
+				if($link != "" && $link != "#") { $vsm = $vsm . "<a target='_blank' href='".$link."'>"; } 
 				$vsm = $vsm . stripslashes($data->vm_text);
 				if($link != "" && $link != "#") { $vsm = $vsm . "</a><br />"; }
 			}
 			else
 			{
 				$vsm = $vsm . "   <br /><br />   ";
-				if($link != "" && $link != "#") { $vsm = $vsm . "<a href='".$link."'>"; } 
+				if($link != "" && $link != "#") { $vsm = $vsm . "<a target='_blank' href='".$link."'>"; } 
 				$vsm = $vsm . stripslashes($data->vm_text);
 				if($link != "" && $link != "#") { $vsm = $vsm . "</a><br />"; }
 			}			
@@ -71,9 +129,6 @@ function verticalmarquee()
 	{
 		$vsm = __('No data found, please check the expiration date.', 'vertical-marquee');
 	}
-	$vm_title = get_option('vm_title');
-	$vm_setting1 = get_option('vm_setting1');
-	list($vm_scrollamount, $vm_scrolldelay, $vm_direction, $vm_style) = explode("~~", $vm_setting1);
 	
 	$what_marquee = "";	
 	$what_marquee = $what_marquee . "<div style='padding:3px;'>";
@@ -120,14 +175,14 @@ function vm_shortcode( $atts )
 			$link = $data->vm_link;
 			if($cnt==0) 
 			{  
-				if($link != "" && $link != "#") { $vsm = $vsm . "<a href='".$link."'>"; } 
+				if($link != "" && $link != "#") { $vsm = $vsm . "<a target='_blank' href='".$link."'>"; } 
 				$vsm = $vsm . stripslashes($data->vm_text);
 				if($link != "" && $link != "#") { $vsm = $vsm . "</a><br />"; }
 			}
 			else
 			{
 				$vsm = $vsm . "   <br /><br />   ";
-				if($link != "" && $link != "#") { $vsm = $vsm . "<a href='".$link."'>"; } 
+				if($link != "" && $link != "#") { $vsm = $vsm . "<a target='_blank' href='".$link."'>"; } 
 				$vsm = $vsm . stripslashes($data->vm_text);
 				if($link != "" && $link != "#") { $vsm = $vsm . "</a><br />"; }
 			}			
@@ -212,59 +267,155 @@ function vm_add_to_menu()
 	add_options_page( __('Vertical marquee','vertical-marquee'), __('Vertical marquee','vertical-marquee'), 'manage_options', 'vertical-marquee-plugin', 'vm_admin_options' );
 }
 
-function vm_widget_init() 
+class vm_widget_register extends WP_Widget 
 {
-	if(function_exists('wp_register_sidebar_widget')) 	
+	function __construct() 
 	{
-		wp_register_sidebar_widget( __('Vertical marquee','vertical-marquee'), __('Vertical marquee','vertical-marquee'), 'vm_widget');
+		$widget_ops = array('classname' => 'vm_widget', 'description' => __('Vertical marquee', 'vertical-marquee'), 'vertical-marquee');
+		parent::__construct('VerticalMarquee', __('Vertical marquee', 'vertical-marquee'), $widget_ops);
 	}
 	
-	if(function_exists('wp_register_widget_control')) 	
+	function widget( $args, $instance ) 
 	{
-		wp_register_widget_control( __('Vertical marquee','vertical-marquee'), array( __('Vertical marquee','vertical-marquee'), 'widgets'), 'vm_control');
-	} 
-}
-
-function vm_control() 
-{
-	$vm_title = get_option('vm_title');
-	if (isset($_POST['vm_control_submit'])) 
-	{
-		$vm_title = $_POST['vm_title'];
-		update_option('vm_title', $vm_title);
+		extract( $args, EXTR_SKIP );
+		$vm_Title 			= apply_filters( 'widget_title', empty( $instance['vm_Title'] ) ? '' : $instance['vm_Title'], $instance, $this->id_base );
+		$vm_scrollamount	= $instance['vm_scrollamount'];
+		$vm_scrolldelay		= $instance['vm_scrolldelay'];
+		$vm_direction		= $instance['vm_direction'];
+		$vm_style			= $instance['vm_style'];
+		$vm_group			= $instance['vm_group'];
+		
+		echo $args['before_widget'];
+		if ( ! empty( $vm_Title ) )
+		{
+			echo $args['before_title'] . $vm_Title . $args['after_title'];
+		}
+		
+		// Call widget method
+		$arr = array();
+		$arr["vm_scrollamount"] = $vm_scrollamount;
+		$arr["vm_scrolldelay"] 	= $vm_scrolldelay;
+		$arr["vm_direction"] 	= $vm_direction;
+		$arr["vm_style"] 		= $vm_style;
+		$arr["vm_group"] 		= $vm_group;
+		verticalmarquee($arr);
+		// Call widget method
+		echo $args['after_widget'];
 	}
-	echo '<p>'.__('Title:','vertical-marquee').'<br><input  style="width: 200px;" type="text" value="';
-	echo $vm_title . '" name="vm_title" id="vm_title" /></p>';
-	echo '<input type="hidden" id="vm_control_submit" name="vm_control_submit" value="1" />';
 	
-	echo '<p>';
-	_e('Check official website for more info', 'vertical-marquee');
-	?> <a target="_blank" href="<?php echo WP_vm_FAV; ?>"><?php _e('click here', 'vertical-marquee'); ?></a></p><?php
+	function update( $new_instance, $old_instance ) 
+	{
+		$instance 						= $old_instance;
+		$instance['vm_Title'] 			= ( ! empty( $new_instance['vm_Title'] ) ) ? strip_tags( $new_instance['vm_Title'] ) : '';
+		$instance['vm_scrollamount']	= ( ! empty( $new_instance['vm_scrollamount'] ) ) ? strip_tags( $new_instance['vm_scrollamount'] ) : '';
+		$instance['vm_scrolldelay'] 	= ( ! empty( $new_instance['vm_scrolldelay'] ) ) ? strip_tags( $new_instance['vm_scrolldelay'] ) : '';
+		$instance['vm_direction'] 		= ( ! empty( $new_instance['vm_direction'] ) ) ? strip_tags( $new_instance['vm_direction'] ) : '';
+		$instance['vm_style'] 			= ( ! empty( $new_instance['vm_style'] ) ) ? strip_tags( $new_instance['vm_style'] ) : '';
+		$instance['vm_group'] 			= ( ! empty( $new_instance['vm_group'] ) ) ? strip_tags( $new_instance['vm_group'] ) : '';
+		return $instance;
+	}
+	
+	function form( $instance ) 
+	{
+		$defaults = array(
+			'vm_Title' 			=> '',
+            'vm_scrollamount' 	=> '',
+            'vm_scrolldelay' 	=> '',
+            'vm_direction' 		=> '',
+			'vm_style' 			=> '',
+			'vm_group' 			=> ''
+        );
+		$instance 			= wp_parse_args( (array) $instance, $defaults);
+        $vm_Title 			= $instance['vm_Title'];
+        $vm_scrollamount 	= $instance['vm_scrollamount'];
+        $vm_scrolldelay 	= $instance['vm_scrolldelay'];
+        $vm_direction 		= $instance['vm_direction'];
+		$vm_style 			= $instance['vm_style'];
+		$vm_group 			= $instance['vm_group'];
+		?>
+		<p>
+            <label for="<?php echo $this->get_field_id('vm_Title'); ?>"><?php _e('Widget Title', 'vertical-marquee'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('vm_Title'); ?>" name="<?php echo $this->get_field_name('vm_Title'); ?>" type="text" value="<?php echo $vm_Title; ?>" />
+        </p>
+		
+		<p>
+            <label for="<?php echo $this->get_field_id('vm_scrollamount'); ?>"><?php _e('Scroll amount', 'vertical-marquee'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('vm_scrollamount'); ?>" name="<?php echo $this->get_field_name('vm_scrollamount'); ?>" type="text" value="<?php echo $vm_scrollamount; ?>" maxlength="2" />
+			Scroll Amount, together with Scroll Delay, sets the speed of the scrolling (Example: 2)
+        </p>
+		
+		<p>
+            <label for="<?php echo $this->get_field_id('vm_scrolldelay'); ?>"><?php _e('Scroll delay', 'vertical-marquee'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('vm_scrolldelay'); ?>" name="<?php echo $this->get_field_name('vm_scrolldelay'); ?>" type="text" value="<?php echo $vm_scrolldelay; ?>" maxlength="2" />
+			Scroll Delay, together with Scroll Amount, sets the speed of the scrolling (Example: 5)
+        </p>
+		
+		<p>
+            <label for="<?php echo $this->get_field_id('vm_direction'); ?>"><?php _e('Scroll Direction', 'vertical-marquee'); ?></label><br />
+			<select class="" id="<?php echo $this->get_field_id('vm_direction'); ?>" name="<?php echo $this->get_field_name('vm_direction'); ?>">
+				<option value="up" <?php $this->vm_render_selected($vm_direction=='up'); ?>>Up</option>
+				<option value="down" <?php $this->vm_render_selected($vm_direction=='down'); ?>>Down</option>
+			</select>
+        </p>
+		
+		<p>
+            <label for="<?php echo $this->get_field_id('vm_style'); ?>"><?php _e('Style', 'vertical-marquee'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('vm_style'); ?>" name="<?php echo $this->get_field_name('vm_style'); ?>" type="text" value="<?php echo $vm_style; ?>" />
+			This style attribute can contain any CSS property. (Example: height:100px;)
+        </p>
+		
+		<p>
+            <label for="<?php echo $this->get_field_id('vm_group'); ?>"><?php _e('Message group', 'vertical-marquee'); ?></label><br />
+			<select class="" id="<?php echo $this->get_field_id('vm_group'); ?>" name="<?php echo $this->get_field_name('vm_group'); ?>">
+				<option value="">Select</option>
+				<?php
+				$arrData = array();
+				$arrData = $this->vm_loadtype();
+				if(count($arrData) > 0)
+				{
+					foreach ($arrData as $arrData)
+					{
+						?><option value="<?php echo $arrData["vm_group"]; ?>" <?php $this->vm_render_selected($arrData["vm_group"] == $vm_group); ?>><?php echo $arrData["vm_group"]; ?></option><?php
+					}
+				}
+				?>
+			</select>
+        </p>
+		
+		<p><?php _e('For more information', 'vertical-marquee'); ?> <a target="_blank" href="<?php echo WP_vm_FAV; ?>"><?php _e('click here', 'vertical-marquee'); ?></a></p>
+		<?php
+	}
+	
+	function vm_render_selected($var) 
+	{
+		if ($var==1 || $var==true) 
+		{
+			echo 'selected="selected"';
+		}
+	}
+	
+	function vm_loadtype() 
+	{
+		global $wpdb;
+		$arrData = array();
+		$sSql 	 = "SELECT distinct(vm_group) as vm_group FROM ".WP_VM_TABLE." order by vm_group";
+		$myData  = $wpdb->get_results($sSql, ARRAY_A);
+		$i 		 = 0;
+		if(count($myData) > 0 )
+		{
+			foreach ($myData as $data)
+			{
+				$arrData[$i]["vm_group"] = stripslashes($data['vm_group']);
+				$i=$i+1;
+			}
+		}
+		return $arrData;
+	}
 }
 
-function vm_widget($args) 
+function vm_widget_loading()
 {
-	extract($args);
-	$vm_title = get_option('vm_title');
-	if($vm_title <> "")
-	{
-		echo $before_widget . $before_title;
-		echo get_option('vm_title');
-		echo $after_title;
-	}
-	else
-	{
-		echo "<div style='padding-top:10px;padding-bottom:10px;'>";
-	}
-	verticalmarquee();
-	if($vm_title <> "")
-	{
-		echo $after_widget;
-	}
-	else
-	{
-		echo "</div>";
-	}
+	register_widget( 'vm_widget_register' );
 }
 
 function vm_textdomain() 
@@ -272,11 +423,11 @@ function vm_textdomain()
 	  load_plugin_textdomain( 'vertical-marquee', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 }
 
+add_action( 'widgets_init', 'vm_widget_loading');
+
 add_action('plugins_loaded', 'vm_textdomain');
 add_shortcode( 'vertical-marguee', 'vm_shortcode' );
-add_action("plugins_loaded", "vm_widget_init");
 register_activation_hook(__FILE__, 'vm_activation');
 add_action('admin_menu', 'vm_add_to_menu');
 register_deactivation_hook( __FILE__, 'vm_deactivate' );
-add_action('init', 'vm_widget_init');
 ?>

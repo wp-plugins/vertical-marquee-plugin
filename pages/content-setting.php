@@ -46,7 +46,7 @@
 	<script language="JavaScript" src="<?php echo WP_vm_PLUGIN_URL; ?>/pages/setting.js"></script>
 	<form name="vm_form" method="post" action="">
 	
-		<h3><?php _e('Setting 1 (Default for Widget)','vertical-marquee'); ?></h3>
+		<h3><?php _e('Setting 1','vertical-marquee'); ?></h3>
 		<label for="tag-title"><?php _e('Scroll amount','vertical-marquee'); ?></label>
 		<input name="vm_scrollamount1" type="text" value="<?php echo $vm_scrollamount1; ?>"  id="vm_scrollamount1" maxlength="5">
 		<p><?php _e('Scroll Amount, together with Scroll Delay, sets the speed of the scrolling.','vertical-marquee'); ?> (Example: 2)</p>
