@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Vertical marquee plugin\n"
-"POT-Creation-Date: 2014-06-19 22:30+0800\n"
-"PO-Revision-Date: 2014-06-19 22:30+0800\n"
+"POT-Creation-Date: 2014-08-02 22:44+0800\n"
+"PO-Revision-Date: 2014-08-02 22:44+0800\n"
 "Last-Translator: \n"
 "Language-Team: www.gopiplus.com <www.gopiplus.com>\n"
 "MIME-Version: 1.0\n"
@@ -30,34 +30,51 @@ msgstr ""
 msgid "Widget Title"
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:342 ../pages/content-setting.php:50
+#: ../vertical-marquee-plugin.php:341 ../pages/content-setting.php:50
 #: ../pages/content-setting.php:70 ../pages/content-setting.php:90
 msgid "Scroll amount"
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:348 ../pages/content-setting.php:54
+#: ../vertical-marquee-plugin.php:343
+msgid ""
+"Scroll Amount, together with Scroll Delay, sets the speed of the scrolling "
+"(Example: 2)"
+msgstr ""
+
+#: ../vertical-marquee-plugin.php:346 ../pages/content-setting.php:54
 #: ../pages/content-setting.php:74 ../pages/content-setting.php:94
 msgid "Scroll delay"
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:354
+#: ../vertical-marquee-plugin.php:348
+msgid ""
+"Scroll Delay, together with Scroll Amount, sets the speed of the scrolling "
+"(Example: 5)"
+msgstr ""
+
+#: ../vertical-marquee-plugin.php:351
 msgid "Scroll Direction"
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:362 ../pages/content-setting.php:65
+#: ../vertical-marquee-plugin.php:358 ../pages/content-setting.php:65
 #: ../pages/content-setting.php:85 ../pages/content-setting.php:105
 msgid "Style"
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:368
+#: ../vertical-marquee-plugin.php:360
+msgid ""
+"This style attribute can contain any CSS property. (Example: height:100px;)"
+msgstr ""
+
+#: ../vertical-marquee-plugin.php:363
 msgid "Message group"
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:385
+#: ../vertical-marquee-plugin.php:379
 msgid "For more information"
 msgstr ""
 
-#: ../vertical-marquee-plugin.php:385 ../pages/content-management-add.php:135
+#: ../vertical-marquee-plugin.php:379 ../pages/content-management-add.php:135
 #: ../pages/content-management-edit.php:176
 #: ../pages/content-management-show.php:134 ../pages/content-setting.php:120
 msgid "click here"

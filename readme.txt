@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-p
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Tags: vertical, marquee, plugin
 Requires at least: 3.4
-Tested up to: 3.9.1
-Stable tag: 5.3
+Tested up to: 4.0
+Stable tag: 5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -22,13 +22,13 @@ Check official website for live demo [http://www.gopiplus.com/work/2012/06/30/ve
 
 I have created this simple plugin because of the users request, You can use this vertical marquee plugin to make your text scroll upward or downwards. This plugin will work all leading browsers except old Netscape browsers. In this plugin i used simple HTML marquee tag to scroll the plugin and it loads very fast, and it is pure HTML so no java script required. admin option available to change the text style and marquee speed.
 
-Features of this plugin
+**Features of this plugin**
 
 *   Light weight
 *   Loads very fast
 *   Pure HTML tags
 
-Plugin configuration
+**Plugin configuration**
 
 *   Drag and drop the widget
 *   Short code for pages and posts 
@@ -50,8 +50,7 @@ Q1. What is Scroll Amount, Scroll Delay?
 
 Q2. Can you explain the short code?
 
-[Answer page](http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/)			
-[Contact](http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/)	
+[Answer page](http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/)
 
 == Screenshots ==
 
@@ -103,6 +102,10 @@ Plugin *.po file (vertical-marquee.po) available in the languages folder.
 
 From this version onwards plugin support multi widget. If your using widget option and upgrading the plugin, This upgrade will remove the widget from your sidebar. Thus please go to your dashboard widget menu and drag and drop the widget again (One time work, not required in future)
 
+= 5.4 =
+
+1. Tested up to 4.0
+
 == Upgrade Notice ==
 
 = 1.0 =				
@@ -146,3 +149,7 @@ Plugin *.po file (vertical-marquee.po) available in the languages folder.
 = 5.3 =
 
 From this version onwards plugin support multi widget. If your using widget option and upgrading the plugin, This upgrade will remove the widget from your sidebar. Thus please go to your dashboard widget menu and drag and drop the widget again (One time work, not required in future)
+
+= 5.4 =
+
+1. Tested up to 4.0

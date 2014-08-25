@@ -3,7 +3,7 @@
 Plugin Name: Vertical marquee plugin
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Description:  You can use this vertical marquee plugin to make your text scroll upward or downwards. This plugin will work all leading browsers. 
-Version: 5.3
+Version: 5.4
 Author: Gopi Ramasamy
 Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
@@ -336,20 +336,17 @@ class vm_widget_register extends WP_Widget
 		<p>
             <label for="<?php echo $this->get_field_id('vm_Title'); ?>"><?php _e('Widget Title', 'vertical-marquee'); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('vm_Title'); ?>" name="<?php echo $this->get_field_name('vm_Title'); ?>" type="text" value="<?php echo $vm_Title; ?>" />
-        </p>
-		
+        </p>	
 		<p>
             <label for="<?php echo $this->get_field_id('vm_scrollamount'); ?>"><?php _e('Scroll amount', 'vertical-marquee'); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('vm_scrollamount'); ?>" name="<?php echo $this->get_field_name('vm_scrollamount'); ?>" type="text" value="<?php echo $vm_scrollamount; ?>" maxlength="2" />
-			Scroll Amount, together with Scroll Delay, sets the speed of the scrolling (Example: 2)
+			<?php _e('Scroll Amount, together with Scroll Delay, sets the speed of the scrolling (Example: 2)', 'vertical-marquee'); ?>
         </p>
-		
 		<p>
             <label for="<?php echo $this->get_field_id('vm_scrolldelay'); ?>"><?php _e('Scroll delay', 'vertical-marquee'); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('vm_scrolldelay'); ?>" name="<?php echo $this->get_field_name('vm_scrolldelay'); ?>" type="text" value="<?php echo $vm_scrolldelay; ?>" maxlength="2" />
-			Scroll Delay, together with Scroll Amount, sets the speed of the scrolling (Example: 5)
+			<?php _e('Scroll Delay, together with Scroll Amount, sets the speed of the scrolling (Example: 5)', 'vertical-marquee'); ?>
         </p>
-		
 		<p>
             <label for="<?php echo $this->get_field_id('vm_direction'); ?>"><?php _e('Scroll Direction', 'vertical-marquee'); ?></label><br />
 			<select class="" id="<?php echo $this->get_field_id('vm_direction'); ?>" name="<?php echo $this->get_field_name('vm_direction'); ?>">
@@ -357,13 +354,11 @@ class vm_widget_register extends WP_Widget
 				<option value="down" <?php $this->vm_render_selected($vm_direction=='down'); ?>>Down</option>
 			</select>
         </p>
-		
 		<p>
             <label for="<?php echo $this->get_field_id('vm_style'); ?>"><?php _e('Style', 'vertical-marquee'); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('vm_style'); ?>" name="<?php echo $this->get_field_name('vm_style'); ?>" type="text" value="<?php echo $vm_style; ?>" />
-			This style attribute can contain any CSS property. (Example: height:100px;)
+			<?php _e('This style attribute can contain any CSS property. (Example: height:100px;)', 'vertical-marquee'); ?>
         </p>
-		
 		<p>
             <label for="<?php echo $this->get_field_id('vm_group'); ?>"><?php _e('Message group', 'vertical-marquee'); ?></label><br />
 			<select class="" id="<?php echo $this->get_field_id('vm_group'); ?>" name="<?php echo $this->get_field_name('vm_group'); ?>">
@@ -381,7 +376,6 @@ class vm_widget_register extends WP_Widget
 				?>
 			</select>
         </p>
-		
 		<p><?php _e('For more information', 'vertical-marquee'); ?> <a target="_blank" href="<?php echo WP_vm_FAV; ?>"><?php _e('click here', 'vertical-marquee'); ?></a></p>
 		<?php
 	}
