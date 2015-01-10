@@ -3,7 +3,7 @@
 Plugin Name: Vertical marquee plugin
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Description:  You can use this vertical marquee plugin to make your text scroll upward or downwards. This plugin will work all leading browsers. 
-Version: 5.4
+Version: 5.5
 Author: Gopi Ramasamy
 Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
