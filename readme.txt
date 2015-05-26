@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-p
 Plugin URI: http://www.gopiplus.com/work/2012/06/30/vertical-marquee-wordpress-plugin/
 Tags: vertical, marquee, plugin
 Requires at least: 3.4
-Tested up to: 4.1
-Stable tag: 5.5
+Tested up to: 4.2.2
+Stable tag: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -110,6 +110,10 @@ From this version onwards plugin support multi widget. If your using widget opti
 
 1. Tested up to 4.1
 
+= 5.6 =
+
+1. Tested up to 4.2.2
+
 == Upgrade Notice ==
 
 = 1.0 =				
@@ -161,3 +165,7 @@ From this version onwards plugin support multi widget. If your using widget opti
 = 5.5 =
 
 1. Tested up to 4.1
+
+= 5.6 =
+
+1. Tested up to 4.2.2
