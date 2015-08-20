@@ -4,6 +4,7 @@
 if (isset($_POST['frm_vm_display']) && $_POST['frm_vm_display'] == 'yes')
 {
 	$did = isset($_GET['did']) ? $_GET['did'] : '0';
+	if(!is_numeric($did)) { die('<p>Are you sure you want to do this?</p>'); }
 	
 	$vm_success = '';
 	$vm_success_msg = FALSE;
@@ -70,7 +71,7 @@ if (isset($_POST['frm_vm_display']) && $_POST['frm_vm_display'] == 'yes')
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
-            <th width="10px" class="check-column" scope="col"><input type="checkbox" name="vm_group_item[]" /></th>
+            <th width="10px" class="check-column" scope="col" style="padding: 8px 2px;"><input type="checkbox" name="vm_group_item[]" /></th>
             <th scope="col"><?php _e('Marquee message','vertical-marquee'); ?></th>
             <th scope="col"><?php _e('Group','vertical-marquee'); ?></th>
             <th scope="col"><?php _e('Expiration','vertical-marquee'); ?></th>
@@ -78,7 +79,7 @@ if (isset($_POST['frm_vm_display']) && $_POST['frm_vm_display'] == 'yes')
         </thead>
         <tfoot>
           <tr>
-            <th width="10px" class="check-column" scope="col"><input type="checkbox" name="vm_group_item[]" /></th>
+            <th width="10px" class="check-column" scope="col" style="padding: 8px 2px;"><input type="checkbox" name="vm_group_item[]" /></th>
             <th scope="col"><?php _e('Marquee message','vertical-marquee'); ?></th>
             <th scope="col"><?php _e('Group','vertical-marquee'); ?></th>
             <th scope="col"><?php _e('Expiration','vertical-marquee'); ?></th>

@@ -78,11 +78,11 @@ if ($vm_error_found == FALSE && strlen($vm_success) > 0)
       <h3><?php _e('Add message','vertical-marquee'); ?></h3>
       
 	  <label for="tag-image"><?php _e('Enter marquee message','vertical-marquee'); ?></label>
-      <textarea name="vm_text" id="vm_text" cols="125" rows="5"></textarea>
+      <textarea name="vm_text" id="vm_text" cols="80" rows="5"></textarea>
       <p><?php _e('We can enter HTML content also.','vertical-marquee'); ?></p>
 	  
 	  <label for="tag-image"><?php _e('Enter link','vertical-marquee'); ?></label>
-      <input name="vm_link" type="text" id="vm_link" value="#" size="125" />
+      <input name="vm_link" type="text" id="vm_link" value="#" size="82" />
       <p><?php _e('When someone clicks on the message, where do you want to send them.','vertical-marquee'); ?></p>
 	  
       <label for="tag-select-gallery-group"><?php _e('Select group','vertical-marquee'); ?></label>

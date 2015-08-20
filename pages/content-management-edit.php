@@ -2,6 +2,7 @@
 <div class="wrap">
 <?php
 $did = isset($_GET['did']) ? $_GET['did'] : '0';
+if(!is_numeric($did)) { die('<p>Are you sure you want to do this?</p>'); }
 
 // First check if ID exist with requested ID
 $sSql = $wpdb->prepare(
@@ -103,11 +104,11 @@ if ($vm_error_found == FALSE && strlen($vm_success) > 0)
       <h3><?php _e('Edit message','vertical-marquee'); ?></h3>	  
 	 
 	  <label for="tag-image"><?php _e('Enter marquee message','vertical-marquee'); ?></label>
-      <textarea name="vm_text" id="vm_text" cols="125" rows="5"><?php echo esc_html(stripslashes($form['vm_text'])); ?></textarea>
+      <textarea name="vm_text" id="vm_text" cols="80" rows="5"><?php echo esc_html(stripslashes($form['vm_text'])); ?></textarea>
       <p><?php _e('We can enter HTML content also.','vertical-marquee'); ?></p>
 	  
 	  <label for="tag-image"><?php _e('Enter link','vertical-marquee'); ?></label>
-      <input name="vm_link" type="text" id="vm_link" value="<?php echo $form['vm_link']; ?>" size="125" />
+      <input name="vm_link" type="text" id="vm_link" value="<?php echo $form['vm_link']; ?>" size="82" />
       <p><?php _e('When someone clicks on the message, where do you want to send them.','vertical-marquee'); ?></p>
 	  
       <label for="tag-select-gallery-group"><?php _e('Select popup group','vertical-marquee'); ?></label>
